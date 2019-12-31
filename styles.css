@@ -36,6 +36,14 @@ body, .quote-input {
     font-weight: bold
 }
 
+.avgTimer {
+    position: absolute;
+    top: 40rem;
+    font-size: 3rem;
+    color: #F0DB4F;
+    font-weight: bold
+}
+
 .numbers-display {
    
     margin-bottom: 1rem;

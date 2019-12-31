@@ -4,12 +4,16 @@ const timerElement = document.getElementById('timer')
 const startElement = document.getElementById('startButton')
 const startNumber1InputElement = document.getElementById('numberInput1')
 const startNumber2InputElement = document.getElementById('numberInput2')
+const averageTimerElement = document.getElementById('avgTimer')
 
 let ints;
+let average;
+let count;
 
 startElement.addEventListener('click', () => { 
  if (!isNaN(startNumber1InputElement.value) && !isNaN(startNumber2InputElement.value) && Number(startNumber1InputElement.value) < Number(startNumber2InputElement.value)) {    
     start();
+    count = 0;
   } else {
     alert('Please enter two numbers such that the first number is lower than the second.')
   }
@@ -22,7 +26,17 @@ numberInputElement.addEventListener('input', () => {
   
     if (ints[0]*ints[1] === Number(numberInputElement.value)) {   
         correct = true;
-        console.log(getTimerTime())
+        if (count > 0) {
+          average = average + (getTimerTime() - average) / (count + 1)
+        } else if (count === 0) {
+          console.log('test')
+          average = getTimerTime();
+        }
+        count++;
+        averageTimerElement.innerText = 'Average Time: ' + Math.round(average);
+
+
+        
     }   
 
   if (correct) start()
